@@ -99,7 +99,9 @@ BLUE = (0,0,128)
 
 #creates people objects
 eloy = Decisio_Picture_Deal(10,10,'right','Eloy.png')
-gray = Decisio_Picture_Deal(100,50,'left','Gray.png')
+gray = Decisio_Picture_Deal(400,10,'left','Gray.png')
+kraus = Decisio_Picture_Deal(100,50,'left','Kraus.png')
+
 
 #text type declaration
 fontObj = pygame.font.Font('freesansbold.ttf',32)
@@ -107,7 +109,8 @@ fontObj = pygame.font.Font('freesansbold.ttf',32)
 #this creates the text boxes
 
 box_eloy =Writing_Place(eloy,200,300)
-box_gray =Writing_Place(gray,200,150)
+box_gray =Writing_Place(gray,200,250)
+box_kraus=Writing_Place(gray,200,200)
 
 
 
@@ -116,21 +119,29 @@ while True: #main game loop
 
     DISPLAYSURF.blit(box_eloy.SurfaceObj,box_eloy.RectObj)
     DISPLAYSURF.blit(box_gray.SurfaceObj,box_gray.RectObj)
+
+    DISPLAYSURF.blit(box_kraus.SurfaceObj,box_kraus.RectObj)
       
     eloy.x,eloy.y,eloy.direction = clockwise(eloy.x,eloy.y,eloy.direction )
     gray.x,gray.y,gray.direction = counterwise(gray.x,gray.y,gray.direction )
-
+    
+    kraus.x,kraus.y,kraus.direction = counterwise(kraus.x,kraus.y,kraus.direction )
 
     DISPLAYSURF.blit(eloy.Img,(eloy.x,eloy.y))
     DISPLAYSURF.blit(gray.Img,(gray.x,gray.y))
+
+    DISPLAYSURF.blit(kraus.Img,(kraus.x,kraus.y))
     
     box_eloy.SurfaceObj = update_box_output(eloy)
     box_gray.SurfaceObj = update_box_output(gray)
-    
+
+    box_kraus.SurfaceObj = update_box_output(kraus)
+
+     
     DISPLAYSURF.blit(box_eloy.SurfaceObj,box_eloy.RectObj)
     DISPLAYSURF.blit(box_gray.SurfaceObj,box_gray.RectObj)
 
-    
+    DISPLAYSURF.blit(box_kraus.SurfaceObj,box_kraus.RectObj)
     
     for event in pygame.event.get():
         if event.type == QUIT:
